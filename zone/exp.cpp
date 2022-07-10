@@ -1033,15 +1033,17 @@ void Group::SplitExp(uint32 exp, Mob* other) {
 		}
 	}
 
-	float groupmod;
-	if (membercount > 1 && membercount < 6)
-		groupmod = 1 + .2*(membercount - 1); //2members=1.2exp, 3=1.4, 4=1.6, 5=1.8
-	else if (membercount == 6)
-		groupmod = 2.16;
-	else
-		groupmod = 1.0;
-	if(membercount > 1 &&  membercount <= 6)
-		groupexp += (uint32)((float)exp * groupmod * (RuleR(Character, GroupExpMultiplier)));
+        float groupmod;
+        if (membercount > 1 && membercount < 5)
+                groupmod = 1 + .3*(membercount - 1); //2members=1.3exp, 3=1.6, 4=1.9
+        else if (membercount == 5)
+                groupmod = 2.34;
+        else if (membercount == 6)
+                groupmod = 3.024;
+        else
+                groupmod = 1.0;
+        if(membercount > 1 &&  membercount <= 6)
+                groupexp += (uint32)((float)exp * groupmod * (RuleR(Character, GroupExpMultiplier)));
 
 	int conlevel = Mob::GetLevelCon(maxlevel, other->GetLevel());
 	if(conlevel == CON_GRAY)
